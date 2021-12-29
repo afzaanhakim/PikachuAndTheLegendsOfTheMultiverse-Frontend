@@ -5,6 +5,7 @@ import SelectPokemon from "./Components/SelectPokemon/SelectPokemon";
 import {CONTRACT_ADDRESS, transformPokemonData} from "./constants";
 import pokemonNFTGame from "./utils/PokemonNFTGame.json";
 import { ethers } from "ethers";
+import Arena from "./Components/Arena/Arena";
 
 // Constants
 const TWITTER_HANDLE = "cloak777";
@@ -93,6 +94,9 @@ const App = () => {
       );
     } else if (currentAccount && !pokemonNFT) {
       return <SelectPokemon setPokemonNFT={setPokemonNFT} />;
+    }
+    else if (currentAccount && pokemonNFT) {
+      return <Arena ppkemonNFT={pokemonNFT}></Arena>
     }
   };
   const connectWallet = async () => {
