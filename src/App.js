@@ -6,6 +6,7 @@ import {CONTRACT_ADDRESS, transformPokemonData} from "./constants";
 import pokemonNFTGame from "./utils/PokemonNFTGame.json";
 import { ethers } from "ethers";
 import Arena from "./Components/Arena/Arena";
+import LoadingIndicator from './Components/LoadingIndicator';
 
 // Constants
 const TWITTER_HANDLE = "cloak777";
@@ -14,6 +15,7 @@ const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 const App = () => {
   const [currentAccount, setCurrentAccount] = useState(null); //state to store users wallet
   const [pokemonNFT, setPokemonNFT] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const checkIfWalletConnected = async () => {
     try {
@@ -35,6 +37,12 @@ const App = () => {
       console.log("Yikes! We have an error", error);
     }
   };
+
+  // UseEffects
+useEffect(() => {
+  setIsLoading(true);
+  checkIfWalletConnected();
+}, []);
   useEffect
     (() => {
       const fetchNFTMetadata = async () => { //fetching a user's NFT meta data by getting their address and using the checkIfUserHasNFT from the pokemonGameContract
@@ -52,6 +60,7 @@ const App = () => {
         if (txn.name) {
           console.log("User has pokemon NFT");
           setPokemonNFT(transformPokemonData(txn));
+          setIsLoading(false);
         } else {
           console.log("No pokemon NFT found");
         }
@@ -96,7 +105,7 @@ const App = () => {
       return <SelectPokemon setPokemonNFT={setPokemonNFT} />;
     }
     else if (currentAccount && pokemonNFT) {
-      return <Arena pokemonNFT={pokemonNFT}></Arena>
+      return <Arena pokemonNFT={pokemonNFT} setPokemonNFT={setPokemonNFT}></Arena>
     }
   };
   const connectWallet = async () => {
