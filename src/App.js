@@ -96,7 +96,7 @@ const App = () => {
       return <SelectPokemon setPokemonNFT={setPokemonNFT} />;
     }
     else if (currentAccount && pokemonNFT) {
-      return <Arena ppkemonNFT={pokemonNFT}></Arena>
+      return <Arena pokemonNFT={pokemonNFT}></Arena>
     }
   };
   const connectWallet = async () => {
