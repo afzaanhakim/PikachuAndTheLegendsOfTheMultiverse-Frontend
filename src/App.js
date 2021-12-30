@@ -16,6 +16,7 @@ const App = () => {
   const [currentAccount, setCurrentAccount] = useState(null); //state to store users wallet
   const [pokemonNFT, setPokemonNFT] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [connected, setConnected] = useState(false);
 
   const checkIfWalletConnected = async () => {
     try {
@@ -29,10 +30,12 @@ const App = () => {
         if (accounts.length !== 0) {
           const account = accounts[0];
           setCurrentAccount(account);
+          setConnected(true)
         }
       } else {
         console.log("No authorised account here! ");
         setIsLoading(false); //setting loading state to false as we return after this check is complte
+        setConnected(false);
         return;
       }
     } catch (error) {
@@ -80,9 +83,14 @@ useEffect(() => {
 
     try {
       if (ethereum.networkVersion !== "4") {
-        alert(
+        console.warn(
           "Please Connect To Rinkeby Network Through Your Metamask Wallet Extension :)"
         );
+        console.log(
+          "Please Connect To Rinkeby Network Through Your Metamask Wallet Extension :)"
+        );
+        alert("Please Connect To Rinkeby Network Through Your Metamask Wallet Extension :)");
+        setConnected(false)
       }
     } catch (error) {
       console.log("error", error);
@@ -93,7 +101,7 @@ useEffect(() => {
     if (isLoading) {
       return <LoadingIndicator />;
     } //showingloading indication
-    if (!currentAccount) {
+    if (!currentAccount && !connected) {
       return (
         <div className="connect-wallet-container">
           <img
@@ -104,8 +112,9 @@ useEffect(() => {
             className="cta-button connect-wallet-button"
             onClick={connectWallet}
           >
-            Connect Wallet To Get Started
+            Connect Wallet To Play!
           </button>
+          <p>Please Connect To The Rinkeby Network</p>
         </div>
       );
     } else if (currentAccount && !pokemonNFT) {
@@ -143,7 +152,7 @@ useEffect(() => {
       <div className="container">
         <div className="header-container">
           <p className="header gradient-text">
-            ⚔️ Pikachu And The Legends Of The Multiverse ⚔️
+            💫 Pikachu And The Legends Of The Multiverse 💫
           </p>
           <p className="sub-text">
             Legendary Pokemon unite to save the Multiverse from it's creator,

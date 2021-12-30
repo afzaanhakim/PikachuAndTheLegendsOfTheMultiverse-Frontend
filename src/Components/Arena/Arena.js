@@ -98,11 +98,12 @@ const [showToast, setShowToast] = useState(false)
     <div className="arena-container">
     {godNFT && pokemonNFT && (
       <div id="toast" className={showToast ? 'show' : ''}>
-        <div id="desc">{`💥 ${godNFT.name} was hit for ${pokemonNFT.attackDamage} by ${pokemonNFT.name}!`}</div>
+        <div id="desc">{`💥 ${godNFT.name} was hit for ${pokemonNFT.attackDamage / 10} by ${pokemonNFT.name}!`}</div>
       </div>
     )}
       {godNFT && (
         <div className="boss-container">
+          <h1>The Multiverse God Pokémon</h1>
           <div className={`boss-content ${attackState}`}>
             <h2>🔥 {godNFT.name}🔥</h2>
             <div className="image-content">
@@ -129,7 +130,7 @@ const [showToast, setShowToast] = useState(false)
       {pokemonNFT && (
         <div className="players-container">
           <div className="player-container">
-            <h2>Your Character</h2>
+            <h1>Your Pokémon</h1>
             <div className="player">
               <div className="image-content">
                 <h2>{pokemonNFT.name}</h2>
@@ -143,7 +144,7 @@ const [showToast, setShowToast] = useState(false)
                 </div>
               </div>
               <div className="stats">
-                <h4>{`⚔️ Attack Damage: ${pokemonNFT.attackDamage}`}</h4>
+                <strong><h2>{`🔥 ⚡️Attack Damage: ${pokemonNFT.attackDamage}`} ⚡️🔥</h2></strong>
               </div>
             </div>
           </div>

@@ -5,15 +5,19 @@
   flex-direction: column;
   align-items: center;
   color: white;
+  
 }
 
 .select-character-container .character-grid {
-  width: 100%;
+  width: 90vw;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   grid-template-rows: repeat(auto-fit, minmax(300px, 1fr));
   grid-row-gap: 15px;
-  
+  background: -webkit-linear-gradient(left, rgba(8, 15, 230, 0.4), rgba(219, 6, 238, 0.4));
+  border-radius:14px;
+  padding:2em;
+  margin-right:3%
 }
 
 .character-grid .character-item {
@@ -37,11 +41,13 @@
 
 .character-item .name-container {
   position: absolute;
-  background-color: #9c0f0f;
+  background: -webkit-linear-gradient(left, #e3a521, #d0ba3d);
   border-radius: 5px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  font-size: 22px;;
+  color:black;
 }
 .character-item .name-container p:nth-child(2){
   background-color: #1b0202;
@@ -68,10 +74,11 @@
   border-bottom-right-radius: 10px;
   border: none;
   cursor: pointer;
-  background-color: rgb(3, 35, 66);
+  background-color: rgba(0, 164, 25, 0.756);
   color: white;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 25px;
+  font-family: Amatic sc
 }
 
 .select-character-container .loading {

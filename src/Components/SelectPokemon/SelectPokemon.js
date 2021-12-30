@@ -27,6 +27,9 @@ const SelectPokemon = ({ setPokemonNFT }) => {
     }
     setMintingPokemon(false)
   };
+
+  const newDate = new Date(Date.now());
+  let modDate = newDate.toString().substr(4, 11)
   useEffect(() => {
     const { ethereum } = window;
 
@@ -99,7 +102,6 @@ const SelectPokemon = ({ setPokemonNFT }) => {
       <div className="character-item" key={poke.name}>
         <div className="name-container">
           <p>{poke.name}</p>
-          <p>{poke.type}</p>
         </div>
         <img src={poke.imageURI} alt={poke.name} />
         <br></br>
@@ -115,8 +117,9 @@ const SelectPokemon = ({ setPokemonNFT }) => {
   };
   return (
     <div className="select-character-container">
-      <h2> Mint Your Multiverse Legendary to save the universe!</h2>
-      {pokemon.length > 0 && <div className="character-grid">{renderPokemon()}</div>}
+      <h2> List Of Legendaries on {modDate}</h2>
+      {pokemon.length > 0 && <div className="character-grid">
+      {renderPokemon()}</div>}
       {mintingPokemon && (
       <div className="loading">
         <div className="indicator">
