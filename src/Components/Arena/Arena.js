@@ -3,10 +3,11 @@ import { ethers } from "ethers";
 import { CONTRACT_ADDRESS, transformPokemonData } from "../../constants";
 import PokemonNFTGame from "../../utils/PokemonNFTGame.json";
 import "./Arena.css";
+import LoadingIndicator from "../LoadingIndicator";
 
 const Arena = ({ pokemonNFT, setPokemonNFT }) => {
   //passing pokemonNFT to put the card in UI
-
+const [showToast, setShowToast] = useState(false)
   const [pokeContract, setPokeContract] = useState(null);
   const [godNFT, setGodNFT] = useState(null);
   const [attackState, setAttackState] = useState("");
@@ -21,6 +22,11 @@ const Arena = ({ pokemonNFT, setPokemonNFT }) => {
         await attackTxn.wait();
         console.log("attackTxn:", attackTxn);
         setAttackState("hit");
+
+        setShowToast(true);
+        setTimeout(() => {
+          setShowToast(false);
+        }, 5000);
       }
     } catch (error) {
       console.log("Error while attacking God!");
@@ -53,37 +59,36 @@ const Arena = ({ pokemonNFT, setPokemonNFT }) => {
         setGodNFT(godTxn);
       };
 
+      /*
+       *  logic when the attack event fires
+       */
+      const onAttackComplete = (newGodHp, newPlayerHp) => {
+        const godHp = newGodHp.toNumber();
+        const playerHp = newPlayerHp.toNumber();
+
+        console.log(`AttackComplete: Boss Hp: ${godHp} Player Hp: ${playerHp}`);
 
         /*
-        *  logic when the attack event fires
-        */
-        const onAttackComplete = (newGodHp, newPlayerHp) => {
-          const godHp = newGodHp.toNumber();
-          const playerHp = newPlayerHp.toNumber();
+         * Update both player and god Hp
+         */
+        setGodNFT((prevState) => {
+          return { ...prevState, hp: godHp };
+        });
 
-          console.log(`AttackComplete: Boss Hp: ${godHp} Player Hp: ${playerHp}`);
-
-          /*
-          * Update both player and god Hp
-          */
-          setGodNFT((prevState) => {
-              return { ...prevState, hp: godHp };
-          });
-
-          setPokemonNFT((prevState) => {
-              return { ...prevState, hp: playerHp };
-          });
+        setPokemonNFT((prevState) => {
+          return { ...prevState, hp: playerHp };
+        });
       };
       if (pokeContract) {
         fetchGod();
-        pokeContract.on('AttackComplete', onAttackComplete)
+        pokeContract.on("AttackComplete", onAttackComplete);
       }
 
       return () => {
-        if(pokeContract){
-          pokeContract.off('AttackComplete', onAttackComplete)
+        if (pokeContract) {
+          pokeContract.off("AttackComplete", onAttackComplete);
         }
-      }
+      };
     } catch (error) {
       console.log("error fetching god pokemon", error);
     }
@@ -91,11 +96,15 @@ const Arena = ({ pokemonNFT, setPokemonNFT }) => {
 
   return (
     <div className="arena-container">
-      {/* Replace your Boss UI with this */}
+    {godNFT && pokemonNFT && (
+      <div id="toast" className={showToast ? 'show' : ''}>
+        <div id="desc">{`💥 ${godNFT.name} was hit for ${pokemonNFT.attackDamage} by ${pokemonNFT.name}!`}</div>
+      </div>
+    )}
       {godNFT && (
         <div className="boss-container">
           <div className={`boss-content ${attackState}`}>
-            <h2>🔥 {godNFT.name} 🔥</h2>
+            <h2>🔥 {godNFT.name}🔥</h2>
             <div className="image-content">
               <img src={godNFT.imageURI} alt={`Boss ${godNFT.name}`} />
               <div className="health-bar">
@@ -105,36 +114,39 @@ const Arena = ({ pokemonNFT, setPokemonNFT }) => {
             </div>
           </div>
           <div className="attack-container">
-            <button
-              className="cta-button"
-              onClick={attackGod}
-            >
+            <button className="cta-button" onClick={attackGod}>
               {`💥 Attack ${godNFT.name}`}
             </button>
           </div>
-          {pokemonNFT && (
-            <div className="players-container">
-              <div className="player-container">
-                <h2>Your Character</h2>
-                <div className="player">
-                  <div className="image-content">
-                    <h2>{pokemonNFT.name}</h2>
-                    <img
-                      src={pokemonNFT.imageURI}
-                      alt={`Character ${pokemonNFT.name}`}
-                    />
-                    <div className="health-bar">
-                      <progress value={pokemonNFT.hp} max={pokemonNFT.maxHp} />
-                      <p>{`${pokemonNFT.hp} / ${pokemonNFT.maxHp} HP`}</p>
-                    </div>
-                  </div>
-                  <div className="stats">
-                    <h4>{`⚔️ Attack Damage: ${pokemonNFT.attackDamage}`}</h4>
-                  </div>
+      {attackState === 'attacking' && (
+        <div className="loading-indicator">
+          <LoadingIndicator />
+          <p>Attacking!</p>
+        </div>
+      )}
+        </div>
+      )}
+      {pokemonNFT && (
+        <div className="players-container">
+          <div className="player-container">
+            <h2>Your Character</h2>
+            <div className="player">
+              <div className="image-content">
+                <h2>{pokemonNFT.name}</h2>
+                <img
+                  src={pokemonNFT.imageURI}
+                  alt={`Character ${pokemonNFT.name}`}
+                />
+                <div className="health-bar">
+                  <progress value={pokemonNFT.hp} max={pokemonNFT.maxHp} />
+                  <p>{`${pokemonNFT.hp} / ${pokemonNFT.maxHp} HP`}</p>
                 </div>
               </div>
+              <div className="stats">
+                <h4>{`⚔️ Attack Damage: ${pokemonNFT.attackDamage}`}</h4>
+              </div>
             </div>
-          )}
+          </div>
         </div>
       )}
     </div>

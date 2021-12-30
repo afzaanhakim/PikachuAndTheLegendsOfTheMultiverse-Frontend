@@ -37,9 +37,20 @@
 
 .character-item .name-container {
   position: absolute;
-  background-color: #838383;
+  background-color: #9c0f0f;
   border-radius: 5px;
-  margin: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.character-item .name-container p:nth-child(2){
+  background-color: #1b0202;
+  border-radius: 5px;
+  margin-left:20em;
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  align-items: flex-end;
 }
 
 .character-item .name-container p {
@@ -61,4 +72,26 @@
   color: white;
   font-weight: bold;
   font-size: 16px;
+}
+
+.select-character-container .loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 75px;
+}
+
+.select-character-container .loading .indicator {
+  display: flex;
+}
+
+.select-character-container .loading .indicator p {
+  font-weight: bold;
+  font-size: 28px;
+  padding-left: 5px;
+}
+
+.select-character-container .loading img {
+  width: 450px;
+  padding-top: 25px;
 }

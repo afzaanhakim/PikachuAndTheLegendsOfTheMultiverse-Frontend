@@ -32,10 +32,13 @@ const App = () => {
         }
       } else {
         console.log("No authorised account here! ");
+        setIsLoading(false); //setting loading state to false as we return after this check is complte
+        return;
       }
     } catch (error) {
       console.log("Yikes! We have an error", error);
     }
+    setIsLoading(false); //updating loading state to false
   };
 
   // UseEffects
@@ -86,6 +89,10 @@ useEffect(() => {
     }
   };
   const renderContent = () => {
+
+    if (isLoading) {
+      return <LoadingIndicator />;
+    } //showingloading indication
     if (!currentAccount) {
       return (
         <div className="connect-wallet-container">
