@@ -3,22 +3,29 @@ import "./SelectPokemon.css";
 import { ethers } from "ethers";
 import { CONTRACT_ADDRESS, transformPokemonData } from "../../constants";
 import PokemonNFTGame from "../../utils/PokemonNFTGame.json";
+import LoadingIndicator from "../LoadingIndicator";
 
 
 const SelectPokemon = ({ setPokemonNFT }) => {
   const [pokemon, setPokemon] = useState([]);
   const [pokeContract, setPokeContract] = useState(null);
-
+  const [mintingPokemon, setMintingPokemon] = useState(false);
   const mintPokemonNFTAction = (id) => async () => {
+
     try {
       if (pokeContract) {
+        setMintingPokemon(true)
         const mintTxn = await pokeContract.mintPokemonNFT(id);
         await mintTxn.wait();
         console.log(mintTxn, "mINT TXN!");
+        setMintingPokemon(false)
       }
     } catch (error) {
       console.warn("Error while Minting Pokemon Action", error);
+      setMintingPokemon(false)
+
     }
+    setMintingPokemon(false)
   };
   useEffect(() => {
     const { ethereum } = window;
@@ -87,10 +94,12 @@ const SelectPokemon = ({ setPokemonNFT }) => {
   }, [pokeContract]);
 
   const renderPokemon = () => {
+    console.log(pokemon)
     const pp = pokemon.map((poke, index) => (
       <div className="character-item" key={poke.name}>
         <div className="name-container">
           <p>{poke.name}</p>
+          <p>{poke.type}</p>
         </div>
         <img src={poke.imageURI} alt={poke.name} />
         <br></br>
@@ -103,25 +112,23 @@ const SelectPokemon = ({ setPokemonNFT }) => {
       </div>
     ));
     return pp;
-    // pokemon.map((poke, index) => (
-    //   <div className="character-item" key={poke.name}>
-    //     <div className="name-container">
-    //       <p>HI</p>
-    //       <p>{poke}</p>
-    //     </div>
-    //     <img src={poke.imageURI} alt={poke.name} />
-    //     <button
-    //       type="button"
-    //       className="character-mint-button"
-    //       // onClick={mintCharacterNFTAction(index)}
-    //     >{`Mint ${poke.name}`}</button>
-    //   </div>
-    // ));
   };
   return (
     <div className="select-character-container">
       <h2> Mint Your Multiverse Legendary to save the universe!</h2>
-      {pokemon && <div className="character-grid">{renderPokemon()}</div>}
+      {pokemon.length > 0 && <div className="character-grid">{renderPokemon()}</div>}
+      {mintingPokemon && (
+      <div className="loading">
+        <div className="indicator">
+          <LoadingIndicator />
+          <p>Minting In Progress...</p>
+        </div>
+        <img
+          src="https://media.giphy.com/media/j2xgBIuAgmrpS/giphy.gif"
+          alt="Minting loading indicator"
+        />
+      </div>
+    )}
     </div>
   );
 };

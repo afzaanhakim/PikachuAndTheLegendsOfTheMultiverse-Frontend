@@ -1,4 +1,4 @@
-const CONTRACT_ADDRESS = '0xDb71532Bb29c3b47f6fc52dCDE6B828F44386243';
+const CONTRACT_ADDRESS = '0xdabde73E86F972DC26D8f583e407a47E2eb663E5';
 const transformPokemonData = (pokemonData) => {
   return {
     name: pokemonData.name,
