@@ -16,14 +16,14 @@
 
 
 ## Connect To Wallet
-<img width="250px" src="https://i.imgur.com/lkuiAMg.gif"/>
+![connect](https://github.com/afzaanhakim/PikachuAndTheLegendsOfTheMultiverse-Frontend/blob/main/docs/connectwallet.gif)
 
 ## List Of Legendaries Page
-<img width="250px" src="https://imgur.com/J2bfphG.gif"/>
+![list](https://github.com/afzaanhakim/PikachuAndTheLegendsOfTheMultiverse-Frontend/blob/main/docs/PokemonList.gif)
 
 
 ## Battle The Master!
-<img width="250px" src="https://imgur.com/ajXrZJD.gif"/>
+![battle](https://github.com/afzaanhakim/PikachuAndTheLegendsOfTheMultiverse-Frontend/blob/main/docs/battle.gif)
 
 ## Tech used in this project
 - React, CSS, Solidity, Alchemy
