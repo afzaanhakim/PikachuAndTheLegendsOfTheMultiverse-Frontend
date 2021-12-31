@@ -1,7 +1,7 @@
 .arena-container {
   display: flex;
   flex-direction: row;
-  align-items: flex-end;
+  align-items: center;
   color: white;
 }
 
@@ -9,9 +9,10 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  margin-left: 12em;
 ;
 }
+
+
 
 .boss-container .boss-content {
   /* display: flex;
@@ -102,6 +103,12 @@
 }
 
 .arena-container .players-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+.arena-container .gods-container {
   width: 100%;
   height: 100%;
   display: flex;

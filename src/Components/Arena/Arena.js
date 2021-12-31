@@ -12,7 +12,11 @@ const [showToast, setShowToast] = useState(false)
   const [godNFT, setGodNFT] = useState(null);
   const [attackState, setAttackState] = useState("");
   //useEffect
-
+const someInlineCSS = {
+  color:"black",
+  fontSize:"50px",
+  fontWeight:"bolder"
+}
   const attackGod = async () => {
     try {
       if (pokeContract) {
@@ -102,6 +106,7 @@ const [showToast, setShowToast] = useState(false)
       </div>
     )}
       {godNFT && (
+        <div className="gods-container">
         <div className="boss-container">
           <h1>The Multiverse God Pokémon</h1>
           <div className={`boss-content ${attackState}`}>
@@ -126,7 +131,9 @@ const [showToast, setShowToast] = useState(false)
         </div>
       )}
         </div>
+        </div>
       )}
+      <img style={{width: "10em"}}src="https://c.tenor.com/WkesrjxP9rAAAAAi/pokemon-pikachu.gif" alt="vs"/>
       {pokemonNFT && (
         <div className="players-container">
           <div className="player-container">
