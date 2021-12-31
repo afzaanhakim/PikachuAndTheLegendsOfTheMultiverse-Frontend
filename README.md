@@ -1,15 +1,34 @@
-# buildspace NFT Game Project
-
-### **Welcome 👋**
-To get started with this course, clone this repo and follow these commands:
-
-1. Run `npm install` at the root of your directory
-2. Run `npm run start` to start the project
-3. Start coding!
-
-### What is the `.vscode` Folder?
-If you use VSCode to build your app, we included a list of suggested extensions that will help you build this project! Once you open this project in VSCode, you will see a popup asking if you want to download the recommended extensions :).
+# <img width="48px" src="https://c.tenor.com/a7Wi8j3rYmEAAAAi/pokemon-legendary.gif"/> Pikachu And The Legends Of The Multiverse <img width="48px" src="https://c.tenor.com/a7Wi8j3rYmEAAAAi/pokemon-legendary.gif"/>
+ - This is a mini NFT Game where you can mint a legendary Pokémon [NFT](https://rinkeby.rarible.com/token/0xdb71532bb29c3b47f6fc52dcde6b828f44386243:1?tab=details) ⚡⚡
+ - You can mint a Pokemon for free 'No actual $$' as this project uses Ethereum Rinkeby network
 
 
-### **Questions?**
-Have some questions make sure you head over to your [buildspace Dashboard](https://app.buildspace.so/courses/CO5cc2751b-e878-41c4-99fa-a614dc910ee9) and link your Discord account so you can get access to helpful channels teaching assistants, and your instructor!
+## Install Metamask Wallet and Get Faucet Funds 
+- This project only works on desktop
+ - In order to play this game you would need to install [Metamask Wallet](https://metamask.io/download)
+ - Enable the browser extension and create a new account **PLEASE DO NOT SHARE YOUR PRIVATE KEY AND PHRASE WITH ANYONE**
+ - You have to be connected to the Rinkeby Network and have some faucet funds available in your account. This is a very short and easy process. Click [here](https://www.geeksforgeeks.org/ethereum-blockchain-getting-free-test-ethers-for-rinkeby-test-network/) and follow the process.
+
+## Backend 
+- The backend of this project is in this [repository](https://github.com/afzaanhakim/PikachuAndTheLegendsOfTheMultiverse)
+- For the backend you would need to get an ALCHEMY API KEY.
+- You would have to create your own project on Alchemy and get the API key if you want to install and make modifications.
+
+
+## Connect To Wallet
+<img width="250px" src="https://i.imgur.com/lkuiAMg.gif"/>
+
+## List Of Legendaries Page
+<img width="250px" src="https://imgur.com/J2bfphG.gif"/>
+
+
+## Battle The Master!
+<img width="250px" src="https://imgur.com/ajXrZJD.gif"/>
+
+## Tech used in this project
+- React, CSS, Solidity, Alchemy
+
+
+## View Collection on Rinkeby Opensea
+- Click this [link](https://testnets.opensea.io/collection/pikachu-and-the-monsters-of-the-multiverse)  to view this collection on Opensea
+- Click this [link](https://rinkeby.rarible.com/collection/0xdabde73e86f972dc26d8f583e407a47e2eb663e5/items)  to view this collection on Rarible
