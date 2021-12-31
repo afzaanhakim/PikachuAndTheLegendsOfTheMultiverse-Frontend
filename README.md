@@ -1,4 +1,8 @@
 # <img width="48px" src="https://c.tenor.com/a7Wi8j3rYmEAAAAi/pokemon-legendary.gif"/> Pikachu And The Legends Of The Multiverse <img width="48px" src="https://c.tenor.com/a7Wi8j3rYmEAAAAi/pokemon-legendary.gif"/>
+
+
+## Click [here](https://pikachu-and-the-legends-of-the-multiverse.vercel.app/) to Play Now!
+
  - This is a mini NFT Game where you can mint a legendary Pokémon [NFT](https://rinkeby.rarible.com/token/0xdb71532bb29c3b47f6fc52dcde6b828f44386243:1?tab=details) ⚡⚡
  - You can mint a Pokemon for free 'No actual $$' as this project uses Ethereum Rinkeby network
 
